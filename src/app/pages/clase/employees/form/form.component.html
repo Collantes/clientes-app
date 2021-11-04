@@ -1,0 +1,154 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{title}} Empleado</h4>
+  <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formGroup">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nombres</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="firstName">
+        <span class="form-text text-danger" *ngIf="validaForm('firstName')">Ingrese nombre</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Apellidos</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="lastName">
+        <span class="form-text text-danger" *ngIf="validaForm('lastName')">Ingrese apellidos</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Correo</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Celular</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="phoneNumber">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Fecha contrato</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="hireDate">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Salario</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="salary">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Comisión</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="commissionPct">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Departamento</label>
+      <div class="col-sm-9">
+        <select class="form-control" formControlName="depaId">
+          <option selected [value]="1">Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <span>Valid</span>
+  <pre>{{formGroup.valid}}</pre>
+
+  <span>Empleado</span>
+  <pre>{{formGroup.value | json}}</pre>
+</div>
+<div class="modal-footer">
+  <button type="button" *ngIf="title === 'Nuevo'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
+</div>
+<!--<div class="modal-header">
+  <h6 class="modal-title lamb-title">
+    <i class="fa fa-university"></i>
+    <span>Formulario</span>
+  </h6>
+  <button type="button" class="close  text-primary" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+    <i class="fa fa-close text-primary"></i>
+  </button>
+</div>
+<div class="modal-body"></div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="save()">Nuevo</button>
+</div>-->
+<!--ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{ err }}
+  </li>
+</ul>
+
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+
+    <form #clienteForm="ngForm">
+      <div class="form-group row">
+        <label for="nombre" class="col-form-label col-sm-3">Nombre</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" #nombre="ngModel"> <!-- required minlength="4" -->
+          <!--div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre.errors.required">
+              Nombre es requerido
+            </div>
+            <div *ngIf="nombre.errors.minlength">
+              Nombre debe tener al menos 4 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="apellido" class="col-form-label col-sm-3">Apellido</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" #apellido="ngModel"> <!-- required -->
+          <!--div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+            <div *ngIf="apellido.errors.required">
+              Apellido es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="email" class="col-form-label col-sm-3">Email</label>
+        <div class="col-sm-6">
+          <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" #email="ngModel"> <!-- required email -->
+          <!--div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required">
+              Email es requerido
+            </div>
+            <div *ngIf="email.errors.email">
+              Email debe tener un formato válido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button class="btn btn-primary" role="button" (click)='save()' *ngIf="!employee.idEmployee else elseBlock" [disabled]="!clienteForm.form.valid">Crear</button>
+
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!clienteForm.form.valid">Editar</button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+-->
