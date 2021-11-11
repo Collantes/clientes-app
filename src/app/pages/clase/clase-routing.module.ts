@@ -17,6 +17,11 @@ const routes: Routes = [
         loadChildren: () => import('src/app/pages/clase/directiva/directiva.module')
           .then(m => m.DirectivaModule),
       },
+      {
+        path: 'departamentos',
+        loadChildren: () => import('src/app/pages/clase/departament/departament.module')
+          .then(m => m.DepartamentModule),
+      },
     ]
   }
 ];
