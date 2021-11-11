@@ -6,6 +6,7 @@ import {MainPageComponent} from "./main-page/main-page.component";
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "../providers/services/auth.service";
 
 const BASE_MODULES = [
   CommonModule,
@@ -27,7 +28,8 @@ const CORE_COMPONENTS: any[] = [
   imports: [
     ...BASE_MODULES
   ],
-  exports: []
+  exports: [],
+  providers: [AuthService]
 })
 export class CoreModule {
 }

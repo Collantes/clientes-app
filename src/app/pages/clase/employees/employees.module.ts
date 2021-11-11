@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FormComponent} from "./form/form.component";
 import {EmployeesComponent} from "./employees.component";
 import {EmployeesRoutingModule} from "./employees-routing.module";
+import {EmployeeService} from "../../../providers/services/employee.service";
 
 
 
@@ -16,6 +17,7 @@ import {EmployeesRoutingModule} from "./employees-routing.module";
     CommonModule,
     ReactiveFormsModule,
     EmployeesRoutingModule
-  ]
+  ],
+  providers: [EmployeeService], // Los servicios se ponen en providers
 })
 export class EmployeesModule { }

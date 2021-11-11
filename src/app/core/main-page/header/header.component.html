@@ -20,8 +20,16 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="!autorizado" class="nav-item" routerLinkActive="active">
         <a class="btn btn-outline-primary" routerLink="/usuarios/login">Sign In</a>
+      </li>
+      <li *ngIf="autorizado" class="dropdown">
+        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          {{auth.usuario.username}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a>
+        </div>
       </li>
     </ul>
   </div>

@@ -26,7 +26,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     HttpClientModule,
     CoreModule,
   ],
-  providers: [EmployeeService], // Los servicios se ponen en providers
+  providers: [], // Los servicios se ponen en providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }
