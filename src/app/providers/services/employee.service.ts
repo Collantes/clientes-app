@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {IResponse} from "../utils/response";
 import {EntityDataService} from "../utils/entity-data.service";
 import {END_POINTS} from "../utils/end-points";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import {END_POINTS} from "../utils/end-points";
 export class EmployeeService  extends EntityDataService<IResponse>{
 
   constructor(protected httpClient: HttpClient) {
-    super(httpClient, END_POINTS.api+END_POINTS.admin.employee);
+    super(httpClient, END_POINTS.api+END_POINTS.admin.employee, );
   }
 /*
   private apiUrl: string = "http://localhost:8080/api/employee";

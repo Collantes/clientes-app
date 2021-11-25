@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {MainPageComponent} from "./core/main-page/main-page.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
+import {AuthGuard} from "./providers/guards/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
     component: MainPageComponent,
     /*canActivate: [
-      //  AuthenticationGuardService,
+      AuthGuard,
     ],*/
     // loadChildren: 'app/modules/modules.module#ModulesModule',
     children: [
@@ -17,12 +18,6 @@ const routes: Routes = [
         component: DashboardComponent,
         pathMatch: 'full'
       },
-      /*,
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-      }*/
       {
         path: 'reportes',
         loadChildren: () => import('./pages/reportes/reportes.module')
@@ -31,7 +26,9 @@ const routes: Routes = [
       {
         path: 'clase',
         loadChildren: () => import('./pages/clase/clase.module')
-          .then(m => m.ClaseModule)
+          .then(m => m.ClaseModule),/* canActivate: [
+          AuthGuard,
+        ]*/
       },
       {
         path: 'usuarios',
@@ -44,7 +41,12 @@ const routes: Routes = [
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
-  }
+  },/*
+  {
+    path: 'oauth',
+    redirectTo: 'usuarios/login',
+    pathMatch: 'full'
+  },*/
 ];
 
 @NgModule({
